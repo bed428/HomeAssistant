@@ -3,30 +3,30 @@ description: ""
 trigger:
   - platform: state
     entity_id:
-      - cover.garage
+      - cover.garage #your garage door entity ID. 
     for:
       hours: 0
       minutes: 5
       seconds: 0
-    to: open
+    to: open #Verify your state in "Developer Tools". It can sometimes be 1, 0, open, close, ajar, etc.
 condition: []
 action:
   - repeat:
       until:
         - condition: state
-          entity_id: cover.garage
-          state: closed
+          entity_id: cover.garage #your garage door entity ID
+          state: closed #Verify your state in "Developer Tools". It can sometimes be 1, 0, open, close, ajar, etc.
       sequence:
         - data: {}
-          action: script.google_home_max_volume
+          action: script.google_home_max_volume #custom action, see 
         - data:
             cache: false
-            entity_id: media_player.kitchen_speaker
-            message: Garage Open
-          action: tts.cloud_say
+            entity_id: media_player.kitchen_speaker #entity you'd like to announce on. 
+            message: Garage Open #TTS message you'd like
+          action: tts.cloud_say #your tts action, I think this is standard in home assistant? 
         - delay:
             hours: 0
-            minutes: 5
+            minutes: 5 #time between warnings. 
             seconds: 0
             milliseconds: 0
 mode: single
