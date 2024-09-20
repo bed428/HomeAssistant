@@ -1,0 +1,12 @@
+alias: Google Home Max volume
+sequence:
+  - data:
+      volume_level: 1 #aka 100%
+    target:
+      device_id:
+        - 9244386d09e311ebb22f1b0a67cca896 #all your google home device IDs... to get these, go to your entities, open the device, and it's part of the url. http://192.168.1.2:8123/config/devices/device/9244386d09e311ebb22f1b0a67cca896
+        - #2
+        - #3
+    action: media_player.volume_set
+mode: single
+icon: mdi:volume-source
