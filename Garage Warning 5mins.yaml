@@ -1,0 +1,32 @@
+alias: Garage Open Warning
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - cover.garage
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    to: open
+condition: []
+action:
+  - repeat:
+      until:
+        - condition: state
+          entity_id: cover.garage
+          state: closed
+      sequence:
+        - data: {}
+          action: script.google_home_max_volume
+        - data:
+            cache: false
+            entity_id: media_player.kitchen_speaker
+            message: Garage Open
+          action: tts.cloud_say
+        - delay:
+            hours: 0
+            minutes: 5
+            seconds: 0
+            milliseconds: 0
+mode: single
